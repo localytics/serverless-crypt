@@ -22,9 +22,7 @@ class Crypt {
       validate,
       encrypt,
       decrypt,
-      saveSecret,
-      addLibraries,
-      removeLibraries
+      saveSecret
     );
 
     this.commands = {
@@ -65,17 +63,13 @@ class Crypt {
 
     this.hooks = {
       'before:deploy:function:deploy': () => BbPromise.bind(this)
-        .then(this.validate)
-        .then(this.addLibraries),
+        .then(this.validate),
       'after:deploy:function:deploy': () => BbPromise.bind(this)
-        .then(this.validate)
-        .then(this.removeLibraries),
+        .then(this.validate),
       'before:deploy:createDeploymentArtifacts': () => BbPromise.bind(this)
-        .then(this.validate)
-        .then(this.addLibraries),
+        .then(this.validate),
       'after:deploy:deploy': () => BbPromise.bind(this)
-        .then(this.validate)
-        .then(this.removeLibraries),
+        .then(this.validate),
       'encrypt:encrypt': () => BbPromise.bind(this)
         .then(this.validate)
         .then(this.encrypt)
